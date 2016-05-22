@@ -42,6 +42,7 @@ SOURCES += \
     common/qwificonfigdialog.cpp \
     common/gnodeconfigdialog.cpp \
     jarvisServer/gruleeditorwidget.cpp \
+    jarvisServer/sseverapi.cpp
     sapiclient.cpp
 
 HEADERS += \
@@ -72,6 +73,7 @@ HEADERS += \
     ../JarvisFirmware/settings.h \
     common/gnodeconfigdialog.h \
     jarvisServer/gruleeditorwidget.h \
+    jarvisServer/sseverapi.h
     sapiclient.h
 
 FORMS   += \
