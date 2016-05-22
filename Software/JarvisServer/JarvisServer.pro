@@ -43,6 +43,7 @@ SOURCES += \
     common/gnodeconfigdialog.cpp \
     jarvisServer/gruleeditorwidget.cpp \
     jarvisServer/sseverapi.cpp
+    sapiclient.cpp
 
 HEADERS += \
     ../JarvisFirmware/jarvisProtocol.h \
@@ -73,6 +74,7 @@ HEADERS += \
     common/gnodeconfigdialog.h \
     jarvisServer/gruleeditorwidget.h \
     jarvisServer/sseverapi.h
+    sapiclient.h
 
 FORMS   += \
     common/gblinkwidget.ui \
