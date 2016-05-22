@@ -2,7 +2,9 @@
 #include <QFile>
 
 sJarvis::sJarvis(QObject *parent) :
-    QObject(parent), m_connectionManager(&m_nodeServer)
+    QObject(parent),
+    m_connectionManager(&m_nodeServer),
+    m_apiServer(&m_nodeServer,&m_connectionManager)
 {
         m_nodeServer.listen(QHostAddress::Any,31416);
 /*

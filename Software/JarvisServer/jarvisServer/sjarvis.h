@@ -4,6 +4,7 @@
 #include <QObject>
 #include "sjarvisnodeserver.h"
 #include "sjarvisconnectionmanager.h"
+#include "sseverapi.h"
 
 
 class sJarvis : public QObject
@@ -15,8 +16,9 @@ public:
     sJarvisConnectionManager*   connectionManager() {return &m_connectionManager;}
 
 private:
-    sJarvisNodeServer        m_nodeServer;
-    sJarvisConnectionManager m_connectionManager;
+    sJarvisNodeServer         m_nodeServer;
+    sJarvisConnectionManager  m_connectionManager;
+    sSeverAPI                 m_apiServer;
     void loadSettings();
 signals:
 
