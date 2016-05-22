@@ -4,6 +4,8 @@
 #include <QObject>
 #include "sjarvisnodeserver.h"
 #include "sjarvisconnectionmanager.h"
+#include "sjarvisgameserver.h"
+
 
 
 class sJarvis : public QObject
@@ -17,6 +19,7 @@ public:
 private:
     sJarvisNodeServer        m_nodeServer;
     sJarvisConnectionManager m_connectionManager;
+    sJarvisGameServer        m_gameServer;
     void loadSettings();
 signals:
 

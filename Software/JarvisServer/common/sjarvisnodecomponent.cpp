@@ -4,7 +4,7 @@
 
 #define F(v) v
 
-
+#include <QColor>
 
 QString sJarvisNodeComponent::eventName(jarvisEvents e)
 {
@@ -223,6 +223,47 @@ void sJarvisNodeComponent::display(QStringList args)
 {
     m_parentNode->doAction(m_id,A_DISPLAY,args);
 }
+
+void sJarvisNodeComponent::display(QImage img, bool sendOnlyDifference)
+{
+    if(!sendOnlyDifference)
+    {
+        m_lastFrame = QImage();
+        setColor(0,0,0);
+    }
+
+
+    img = img.convertToFormat(QImage::Format_RGB888);
+    QStringList args;
+    for(int x = 0 ; x < img.width() ; x++)
+    {
+        for(int y = 0 ; y < img.height() ; y++)
+        {
+            QRgb colorRgb = img.pixel(QPoint(x,y));
+            QRgb lastcolorRgb = m_lastFrame.pixel(QPoint(x,y));
+            if(lastcolorRgb != colorRgb)
+            {
+                QColor color(colorRgb);
+                //qDebug() << "x:" << x << " - y:" << y << " - r:" << color.red() << " - g:" << color.green() << " - b:" << color.blue();
+                args.append(QString::number(y,'f',0));
+                args.append(QString::number(x,'f',0));
+                args.append(QString::number(color.red() ,'f',0));
+                args.append(QString::number(color.green() ,'f',0));
+                args.append(QString::number(color.blue() ,'f',0));
+
+                //qDebug() << " - args:" << args.size() ;
+            }
+            if( args.size() >= (32*5) )
+            {
+                display(args);
+                args.clear();
+            }
+        }
+    }
+    if(args.size()) display(args);
+    m_lastFrame = img;
+}
+
 
 void sJarvisNodeComponent::parseEvent(QString component, jarvisEvents event, QStringList args)
 {

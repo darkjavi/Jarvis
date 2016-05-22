@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QStringList>
+#include <QImage>
 #include "jarvisProtocol.h"
 #include "sjarvisnode.h"
 
@@ -32,6 +33,7 @@ protected:
     QString         m_id;
     QList<jarvisActions>   m_actions;
     QList<jarvisEvents>    m_CapableEvents;
+    QImage                 m_lastFrame;
 signals:
     void enabled      (QStringList args = QStringList());
     void disabled     (QStringList args = QStringList());
@@ -67,6 +69,7 @@ public slots:
     void setColor(QStringList args = QStringList());
     void setLeds(QStringList args = QStringList());
     void display(QStringList args = QStringList());
+    void display(QImage img, bool sendOnlyDifference = false );
     void parseEvent(QString component, jarvisEvents event, QStringList args = QStringList());
 
 
